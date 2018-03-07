@@ -6,20 +6,27 @@ import (
 	"reflect"
 )
 
-func (code *Tree) EvalAny() interface{} { //評価
-	switch code.Kind {
+func (tree *Tree) EvalAny() interface{} { //評価
+	switch tree.Kind {
 	case "INT", "FLOAT":
-		return code.EvalNumeric() //数字なら数字を返す
+		return tree.EvalNumeric() //数字なら数字を返す
 	case "+":
-		return code.Node[0].EvalAny().(int) + code.Node[1].EvalAny().(int)
+		return tree.Node[0].EvalAny().(int) + tree.Node[1].EvalAny().(int)
 	default:
 		return 0
 	}
 }
 
-func (code *Tree) EvalNumeric() interface{} { //数字の評価
-	i := code.Value
+func (tree *Tree) EvalNumeric() interface{} { //数字の評価
+	i := tree.Value
 	return i
+}
+
+func (tree *Tree) Eval() interface{} {
+	switch tree.getOperator {
+	case "+":
+
+	}
 }
 
 func EvalAddition(left interface{}, right ...interface{}) (interface{}, error) { //加算を評価(interfaceを使用)

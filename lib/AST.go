@@ -45,3 +45,7 @@ func TypeInference(expr interface{}) string { //型情報を返す
 		return "UNKNOWN"
 	}
 }
+
+func (tree *Tree) getOperator() string { //
+	return tree.Value.(string)
+}
